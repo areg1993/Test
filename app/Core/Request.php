@@ -82,12 +82,12 @@ class Request
 
         if (isset($arr[$name])) {
             if (is_array($arr[$name])) {
-                $arr[$name][] = $value;
+                $arr[$name][] = $this->clear($value);
             } else {
                 $arr[$name] = array($arr[$name], $this->clear($value));
             }
         } else {
-            $arr[$name] = $value;
+            $arr[$name] = is_array($value) ? $value : $this->clear($value);
         }
 
         return $arr;
